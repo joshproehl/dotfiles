@@ -1,0 +1,10 @@
+# vi: ft=zsh
+
+# Set GPG_TTY when connected via SSH
+if [[ -n "${SSH_TTY}" || -n "${SSH_CONNECTION}" ]]; then
+  export GPG_TTY=$(command tty)
+fi
+
+source "${ZDOTDIR}/init.zsh"
+
+export HISTORY_FILTER_EXCLUDE=('t', 'youtube-dl')

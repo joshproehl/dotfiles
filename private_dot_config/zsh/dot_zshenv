@@ -1,0 +1,5 @@
+# vi: ft=zsh
+
+if [[ ${SHLVL} == 1 && ! -o login ]]; then
+  source "${ZDOTDIR}/init.zsh"
+fi
