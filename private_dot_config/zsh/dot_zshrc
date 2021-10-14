@@ -3,7 +3,8 @@ source "$ZDOTDIR/antigen.zsh"
 antigen init "$ZDOTDIR/antigenrc"
 
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
-declare -r HISTFILE
+# Had to disable the -r here because it was preventing being able to paste into shell
+#declare -r HISTFILE
 export HISTSIZE=50000
 export SAVEHIST=20000
 
