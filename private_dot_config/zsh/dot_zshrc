@@ -1,6 +1,7 @@
 # Load Antigen to bring in plugins!
 source "$ZDOTDIR/antigen.zsh"
 antigen init "$ZDOTDIR/antigenrc"
+plugins=(asdf)
 
 export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 # Had to disable the -r here because it was preventing being able to paste into shell
