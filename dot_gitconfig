@@ -1,0 +1,7 @@
+[user]
+	name = Josh Proehl
+	email = josh@daedalusdreams.com
+[init]
+  defaultBranch = master
+[color]
+  ui = auto
