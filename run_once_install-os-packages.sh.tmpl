@@ -3,7 +3,8 @@
 # TODO: Ensure correct packages installed for debian and arch. (This was tested on a fedora install)
 # Ensure package deps installed
 {{ if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf install -y util-linux-user zsh neovim
+sudo dnf install -y util-linux-user zsh neovim npm
+sudo npm install -g @bitwarden/cli
 {{ else if eq .chezmoi.osRelease.id "debian" }}
 sudo apt install zsh
 {{ else if eq .chezmoi.osRelease.id "arch" }}
@@ -11,3 +12,5 @@ sudo pacman -S zsh
 {{ end }}
 
 chsh -s $(which zsh)
+
+bw login josh@joshproehl.com --apikey

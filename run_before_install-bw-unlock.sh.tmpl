@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [[ -z "${BW_SESSION}" ]]; then
+  echo "Unlock bw for this terminal:"
+  export BW_SESSION="$(bw unlock --raw)"
+fi
