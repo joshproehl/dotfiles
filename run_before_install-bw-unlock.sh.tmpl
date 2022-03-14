@@ -1,6 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if [[ -z "${BW_SESSION}" ]]; then
-  echo "Unlock bw for this terminal:"
-  export BW_SESSION="$(bw unlock --raw)"
+  echo "|-------------------------------------|"
+  echo "| Unlock bw for this terminal session |"
+  echo "|  ('bw lock' or close shell to end)  |"
+  source <(echo "export BW_SESSION=\"$(bw unlock --raw)\"");
 fi
+
+bw sync
