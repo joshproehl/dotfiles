@@ -1,0 +1,16 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.osRelease.id "fedora" }}
+# Dependencies for https://github.com/asdf-vm/asdf-erlang
+sudo dnf groupinstall -y 'Development Tools' 'C Development Tools and Libraries'
+sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3
+
+{{ else if eq .chezmoi.osRelease.id "debian" }}
+# Dependencies for https://github.com/asdf-vm/asdf-erlang
+apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev
+
+{{ else if eq .chezmoi.osRelease.id "arch" }}
+# Dependencies for https://github.com/asdf-vm/asdf-erlang
+sudo pacman -S --needed base-devel
+sudo pacman -S ncurses glu mesa wxgtk2 libpng
+{{ end }}
