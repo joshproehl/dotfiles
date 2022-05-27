@@ -1,15 +1,24 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.osRelease.id "fedora" }}
+# Dependencies for Phoenix/Elixir
+sudo dnf install -y inotify-tools
+
 # Dependencies for https://github.com/asdf-vm/asdf-erlang
 sudo dnf groupinstall -y 'Development Tools' 'C Development Tools and Libraries'
 sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 
 {{ else if eq .chezmoi.osRelease.id "debian" }}
+# Dependencies for Phoenix/Elixir
+sudo apt-get -y install inotify-tools
+
 # Dependencies for https://github.com/asdf-vm/asdf-erlang
-apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev
+sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev
 
 {{ else if eq .chezmoi.osRelease.id "arch" }}
+# Dependencies for Phoenix/Elixir
+sudo pacman -S inotify-tools
+
 # Dependencies for https://github.com/asdf-vm/asdf-erlang
 sudo pacman -S --needed base-devel
 sudo pacman -S ncurses glu mesa wxgtk2 libpng libssh
