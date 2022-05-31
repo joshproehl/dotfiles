@@ -1,6 +1,9 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.osRelease.id "fedora" }}
+# On Fedora we use Podman, so we want this to ensure scripts calling docker work
+sudo dnf install -y podman-docker
+
 # Dependencies for Phoenix/Elixir
 sudo dnf install -y inotify-tools
 
