@@ -1,14 +1,27 @@
 #!/usr/bin/env bash
 
-chsh -s $(which zsh)
+if [[ "$(bw status)" == *unauthenticated* ]]; then
+  echo '|-----------------------------------------------------------|'
+  echo '|   Log in to the Bitwarden web vault to get the API keys   |'
+  echo '| (Be careful copying it, there seem to be spaces around it |'
+  bw login josh@joshproehl.com --apikey || true
+fi
 
-bw login josh@joshproehl.com --apikey || true
+if [[ -z "$BW_SESSION" ]]
+then
+  echo '------------------------------------------|'
+  echo ' Unlock bw for this terminal session. Run |'
+  echo '  export BW_SESSION="$(bw unlock --raw)"  |'
+  echo '   in this shell and then re-run chezmoi  |'
+  echo '    ('bw lock' or close shell to end)     |'
+  exit 1
 
-if [[ -z "${BW_SESSION}" ]]; then
-  echo "|-------------------------------------|"
-  echo "| Unlock bw for this terminal session |"
-  echo "|  ('bw lock' or close shell to end)  |"
-  source <(echo "export BW_SESSION=\"$(bw unlock --raw)\"");
+  # Note this doesn't work because only the subshell gets the export,
+  # not the shell that chezmoi is running in
+  echo '|--------------------------------------|'
+  echo '| Unlock bw for this terminal session. |'
+  echo '|  ('bw lock' or close shell to end)   |'
+  #source <(echo "export BW_SESSION=\"$(bw unlock --raw)\"");
 fi
 
 bw sync

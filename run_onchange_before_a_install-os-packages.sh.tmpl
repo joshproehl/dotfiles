@@ -22,7 +22,9 @@ sudo npm install -g @bitwarden/cli
 # Archlinux #
 {{ else if eq .chezmoi.osRelease.id "arch" }}
 sudo pacman -S zsh npm
+sudo npm install -g @bitwarden/cli
 {{ end }}
 
 
-
+# Ensure we're defaulting to ZSH as our shell
+chsh -s $(which zsh)
