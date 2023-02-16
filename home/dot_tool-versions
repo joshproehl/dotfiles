@@ -1,4 +1,4 @@
-nodejs lts
+nodejs 18.14.0
 ruby system
 golang 1.17.1
 elixir 1.12.3-otp-24
