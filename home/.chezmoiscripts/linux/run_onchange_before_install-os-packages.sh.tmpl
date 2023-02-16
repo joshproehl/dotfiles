@@ -1,15 +1,17 @@
 #!/bin/sh
 
+# Ensure package deps, including dev dependencies
+
 ##########
 # Fedora #
 {{ if eq .chezmoi.osRelease.id "fedora" }}
-# On Fedora we use Podman, so we want this to ensure scripts calling docker work
-sudo dnf install -y podman-docker
+sudo dnf install -y util-linux-user zsh neovim npm podman-docker
+npm install -g @bitwarden/cli
 
-# Dependencies for Phoenix/Elixir
+echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo dnf install -y inotify-tools
 
-# Dependencies for https://github.com/asdf-vm/asdf-erlang
+echo "+++ Installing dependencies for asdf-erlang..."
 sudo dnf groupinstall -y 'Development Tools' 'C Development Tools and Libraries'
 sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 
@@ -17,22 +19,27 @@ sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 ##########
 # Debian #
 {{ else if eq .chezmoi.osRelease.id "debian" }}
-# Dependencies for Phoenix/Elixir
+sudo apt install zsh npm
+npm install -g @bitwarden/cli
+
+echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo apt-get -y install inotify-tools
 
-# Dependencies for https://github.com/asdf-vm/asdf-erlang
+echo "+++ Dependencies for asdf-erlang..."
 sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev
 
 
 #############
 # Archlinux #
 {{ else if eq .chezmoi.osRelease.id "arch" }}
-# Dependencies for Phoenix/Elixir
+sudo pacman -S --needed zsh npm
+npm install -g @bitwarden/cli
+
+echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo pacman -S --needed inotify-tools
 
-# Dependencies for https://github.com/asdf-vm/asdf-erlang
+echo "+++ Installing dependencies for asdf-erlang..."
 sudo pacman -S --needed base-devel
 sudo pacman -S --needed ncurses glu mesa wxwidgets-gtk3 webkit2gtk libpng libssh
-
 
 {{ end }}
