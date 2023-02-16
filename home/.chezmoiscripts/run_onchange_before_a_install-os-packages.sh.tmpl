@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# TODO: Ensure correct packages installed for debian and arch. (This was tested on a fedora install)
 # Ensure package deps installed
-
 
 ##########
 # Fedora #
@@ -23,6 +21,8 @@ sudo npm install -g @bitwarden/cli
 {{ else if eq .chezmoi.osRelease.id "arch" }}
 sudo pacman -S zsh npm
 sudo npm install -g @bitwarden/cli
+
+
 {{ end }}
 
 
