@@ -1,0 +1,46 @@
+directory: /mnt/music/Library
+library: /mnt/music/Library.blb
+
+import:
+  move: no
+  copy: yes
+  write: yes
+  resume: ask
+  log: /mnt/music/beet_import.log
+
+plugins: convert web the fromfilename mbsync smartplaylist plexupdate chroma duplicates missing edit export info discogs inline
+
+paths:
+  default: $albumartist/$album%aunique{}/%if{$multidisc,Disc $disc/}$track $title
+
+item_fields:
+    multidisc: 1 if disctotal > 1 else 0
+
+web:
+  host: 0.0.0.0
+  port: 80
+
+smartplaylist:
+  relative_to: /mnt/music/Library
+  playlist_dir: /mnt/music/playlists
+  playlists:
+    - name: Orpheus-Album-of-the-Month-candidates.m3u
+      query: 'ops_aotm_candidate::.'
+    - name: Orpheus-Album-of-the-Month-winners.m3u
+      query: 'ops_aotm_winner::.'
+    - name: from_brian.m3u
+      query: 'source:brian_costa'
+
+plex:
+  host: 10.110.42.142
+  port: 32400
+  library_name: Music
+  token: {{ (bitwardenFields "item" "ee1ff448-1d75-4417-adc7-aa10001e5b08").munin_token.value }}
+chroma:
+  auto: no
+
+ui:
+  color: yes
+
+discogs:
+  user_token: {{ (bitwardenFields "item" "e46c6eb1-0c9a-4f60-8f21-aa10001e5b08").user_token.value }}
