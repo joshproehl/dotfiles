@@ -1,0 +1,2 @@
+{{- /* chezmoi:modify-template */ -}}
+{{ fromIni .chezmoi.stdin | setValueAtPath "Desktop Entry.DefaultProfile" "Solarized with hack-nerd.profile" | toIni | trim }}
