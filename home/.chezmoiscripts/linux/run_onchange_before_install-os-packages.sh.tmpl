@@ -8,6 +8,8 @@
 sudo dnf install -y util-linux-user zsh neovim npm podman-docker
 npm install -g @bitwarden/cli
 
+# TODO: NVIM dependencies (from ArchLinux, need correct package names)
+
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo dnf install -y inotify-tools
 
@@ -22,6 +24,8 @@ sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 sudo apt install zsh npm
 npm install -g @bitwarden/cli
 
+# TODO: NVIM dependencies (from ArchLinux, need correct package names)
+
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo apt-get -y install inotify-tools
 
@@ -34,6 +38,9 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev
 {{ else if eq .chezmoi.osRelease.id "arch" }}
 sudo pacman -S --needed zsh npm
 npm install -g @bitwarden/cli
+
+echo "+++ Install dependencies for nvim"
+# sudo pacman -S --needed nerd-fonts-meta
 
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo pacman -S --needed inotify-tools
