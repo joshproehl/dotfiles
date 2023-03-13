@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 " Theming
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Movement and editing
 Plug 'Shougo/neoyank.vim'
@@ -20,9 +21,16 @@ Plug 'airblade/vim-gitgutter'
 " Support editorconfig.org .editorconfig files
 Plug 'editorconfig/editorconfig-vim'
 
-" NerdTree and dependencies
-Plug 'scrooloose/nerdtree' ", { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
+if has("nvim")
+  " Note that this require patched font https://www.nerdfonts.com configured
+  " in your terminal emulator
+  Plug 'nvim-tree/nvim-web-devicons' " Optional, for file icons
+  Plug 'nvim-tree/nvim-tree.lua'
+else
+  " NerdTree and dependencies
+  Plug 'scrooloose/nerdtree' ", { 'on': 'NERDTreeToggle' }
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+endif
 
 " Unite and dependencies
 Plug 'Shougo/unite.vim' 
@@ -34,6 +42,11 @@ Plug 'gregsexton/gitv' " Fugitive extension for Git
 " Airline and dependencies
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Fix for the issue where deleting a buffer doesn't remove it from tabline
+" Allegedly this is fixed, per
+" https://github.com/vim-airline/vim-airline/issues/399
+" but I'm still having the issue, so we'll try this.
+autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
 
 " Ctrl-P and it's dependencies
 Plug 'ctrlpvim/ctrlp.vim'
@@ -101,6 +114,11 @@ inoremap <Right> <NOP>
 inoremap <Left> <NOP>
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
+
+"Use PaperColor theme
+"set t_co=256 " May or may not be needed
+"set background=light
+"colorscheme PaperColor
 
 " Set color and make GUI and Terminal look different
 "colorscheme solarized
@@ -200,12 +218,18 @@ set gdefault
 set backupdir=~/.vim/swp
 set directory=~/.vim/swp
 
-" Set up NERDTree
-nnoremap <leader>n :NERDTreeToggle<cr>
-" Open NERDTree to the currently open file
-nnoremap <leader>r :NERDTreeFind<cr>
-let g:NERDTreeWinPos = "right"
-let NERDTreeQuitOnOpen=1
+if has("nvim")
+  nnoremap <leader>n :NvimTreeToggle<cr>
+  nnoremap <leader>r :NvimTreeFindFile<cr>
+  " Further NvimTree configuration takes place in ~/.config/nvim/init.lua
+else
+  " Set up NERDTree
+  nnoremap <leader>n :NERDTreeToggle<cr>
+  " Open NERDTree to the currently open file
+  nnoremap <leader>r :NERDTreeFind<cr>
+  let g:NERDTreeWinPos = "right"
+  let NERDTreeQuitOnOpen=1
+endif
 
 " MacVim specific stuff (that can't be in gvimrc)
 let macvim_hig_shift_movement = 1
@@ -392,6 +416,9 @@ nnoremap <silent> [unite]g :<C-U>Unite -auto-resize -silent -buffer-name=menu -s
 
 " Done configuring Unite plugin
 " ====================================================
+
+" Add shortcut for write-and-close buffer command
+cnorea wd w\|bd
 
 " Might want machine/user specific stuff, load the .local file.
 if filereadable(expand("~/.vimrc.local"))
