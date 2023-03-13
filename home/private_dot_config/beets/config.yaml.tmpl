@@ -8,7 +8,7 @@ import:
   resume: ask
   log: /mnt/music/beet_import.log
 
-plugins: convert web the fromfilename mbsync smartplaylist plexupdate chroma duplicates missing edit export info discogs inline
+plugins: convert web the fromfilename mbsync smartplaylist plexupdate chroma duplicates missing edit export info inline #discogs 
 
 paths:
   default: $albumartist/$album%aunique{}/%if{$multidisc,Disc $disc/}$track $title
@@ -43,4 +43,5 @@ ui:
   color: yes
 
 discogs:
+  index_tracks: yes
   user_token: {{ (bitwardenFields "item" "e46c6eb1-0c9a-4f60-8f21-aa10001e5b08").user_token.value }}
