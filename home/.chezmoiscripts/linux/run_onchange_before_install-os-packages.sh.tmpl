@@ -39,8 +39,10 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev
 sudo pacman -S --needed zsh npm
 npm install -g @bitwarden/cli
 
-echo "+++ Install dependencies for nvim"
-sudo pacman -S --needed nerd-fonts-meta
+#####
+# NOTE: How should we assume Aura exists for installing AUR packages? Inform the user somehow?
+#echo "+++ Install dependencies for nvim"
+#sudo aura -A nerd-fonts-meta
 
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo pacman -S --needed inotify-tools
