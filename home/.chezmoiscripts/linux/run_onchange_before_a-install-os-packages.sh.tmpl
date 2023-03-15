@@ -6,7 +6,6 @@
 # Fedora #
 {{ if eq .chezmoi.osRelease.id "fedora" }}
 sudo dnf install -y util-linux-user zsh neovim npm podman-docker
-npm install -g @bitwarden/cli
 
 # TODO: NVIM dependencies (from ArchLinux, need correct package names)
 
@@ -22,7 +21,6 @@ sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 # Debian #
 {{ else if eq .chezmoi.osRelease.id "debian" }}
 sudo apt install zsh npm
-npm install -g @bitwarden/cli
 
 # TODO: NVIM dependencies (from ArchLinux, need correct package names)
 
@@ -37,7 +35,6 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev
 # Archlinux #
 {{ else if eq .chezmoi.osRelease.id "arch" }}
 sudo pacman -S --needed zsh npm
-npm install -g @bitwarden/cli
 
 #####
 # NOTE: How should we assume Aura exists for installing AUR packages? Inform the user somehow?
