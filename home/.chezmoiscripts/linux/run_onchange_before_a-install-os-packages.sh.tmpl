@@ -5,7 +5,7 @@
 ##########
 # Fedora #
 {{ if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf install -y util-linux-user zsh neovim npm podman-docker
+sudo dnf install -y util-linux-user zsh neovim npm python3-pip
 
 # TODO: NVIM dependencies (from ArchLinux, need correct package names)
 
