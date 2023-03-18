@@ -1,0 +1,14 @@
+{{ if (and (not .ephemeral) (not .headless)) -}}
+#!/usr/bin/env bash
+
+# If we don't have gsettings installed than we're probably not using gnome.
+if hash gsettings 2>/dev/null; then
+  echo "[+++] Setting up GNOME settings using gsettings [+++]"
+  defaultTerminalProfile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+  gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ font 'Hack Nerd Font Mono 12'
+  echo "[===] Done setting GNOME configs [===]"
+else
+  echo "[===] Not setting GNOME settings, we don't appear to be on a GNOME system [===]"
+fi
+
+{{ end }}
