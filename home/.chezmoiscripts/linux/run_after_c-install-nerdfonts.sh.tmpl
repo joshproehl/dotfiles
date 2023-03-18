@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+{{ if eq .chezmoi.osRelease.id "arch" }}
+echo "[---] Not installing NerdFonts manually, AUR package handles them. [---]"
+{{ else }}
+
+echo "[+++] Installing required NerdFonts [+++]"
+# TODO: Don't suppress output if chezmoi's --verbose mode is active?
+wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip" -O /tmp/Hack.zip --quiet
+unzip -d ~/.local/share/fonts -oq /tmp/Hack.zip 
+fc-cache -fv  > /dev/null
+rm /tmp/Hack.zip
+echo "[=== Done installing NerdFonts ===]"
+
+{{ end }}
