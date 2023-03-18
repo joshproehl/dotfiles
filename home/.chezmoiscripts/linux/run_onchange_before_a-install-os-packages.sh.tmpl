@@ -5,9 +5,11 @@
 ##########
 # Fedora #
 {{ if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf install -y util-linux-user zsh neovim npm python3-pip
+sudo dnf install -y util-linux-user zsh npm
 
 # TODO: NVIM dependencies (from ArchLinux, need correct package names)
+echo "+++ Installing dependencies for NVIM/Development"
+sudo dnf install -y neovim python3-pip
 
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo dnf install -y inotify-tools
@@ -22,7 +24,8 @@ sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 {{ else if eq .chezmoi.osRelease.id "debian" }}
 sudo apt install zsh npm
 
-# TODO: NVIM dependencies (from ArchLinux, need correct package names)
+echo "+++ Installing dependencies for NVIM/Development"
+sudo apt-get -y install neovim silversearcher-ag python3-pip 
 
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo apt-get -y install inotify-tools
