@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Ensure package deps, including dev dependencies
 
@@ -21,10 +21,11 @@ sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 
 ##########
 # Debian #
-{{ else if eq .chezmoi.osRelease.id "debian" }}
+{{ else if eq .chezmoi.osRelease.id "pop" }}
 sudo apt install zsh npm
 
 echo "+++ Installing NVIM stable from neovim github"
+pushd /tmp > /dev/null
 wget --quiet "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb.sha256sum" -O /tmp/nvim-linux64.deb.sha256sum
 wget --quiet "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb" -O /tmp/nvim-linux64.deb
 sha256sum --strict -c /tmp/nvim-linux64.deb.sha256sum
@@ -32,8 +33,9 @@ if [ $? -ne 0 ]; then
   echo "[!!!!!] Could not install NVIM, bad sha256sum [!!!!!]"
 else
   sudo apt install /tmp/nvim-linux64.deb
-  echo "[===] Succes! [===]
+  echo "[===] Success! (nvim installed) [===]"
 fi
+popd > /dev/null
 
 echo "+++ Installing nvim/development dependencies"
 sudo apt-get -y install silversearcher-ag python3-pip python3-nvim
