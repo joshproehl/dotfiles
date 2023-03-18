@@ -38,13 +38,13 @@ fi
 popd > /dev/null
 
 echo "+++ Installing nvim/development dependencies"
-sudo apt-get -y install silversearcher-ag python3-pip python3-nvim
+sudo apt-get -y install silversearcher-ag python3-pip
 
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo apt-get -y install inotify-tools
 
 echo "+++ Dependencies for asdf-erlang..."
-sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev
+sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev
 
 
 #############
