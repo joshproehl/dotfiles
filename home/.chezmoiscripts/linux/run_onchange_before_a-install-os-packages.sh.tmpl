@@ -24,8 +24,19 @@ sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 {{ else if eq .chezmoi.osRelease.id "debian" }}
 sudo apt install zsh npm
 
-echo "+++ Installing dependencies for NVIM/Development"
-sudo apt-get -y install neovim silversearcher-ag python3-pip 
+echo "+++ Installing NVIM stable from neovim github"
+wget --quiet "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb.sha256sum" -O /tmp/nvim-linux64.deb.sha256sum
+wget --quiet "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb" -O /tmp/nvim-linux64.deb
+sha256sum --strict -c /tmp/nvim-linux64.deb.sha256sum
+if [ $? -ne 0 ]; then
+  echo "[!!!!!] Could not install NVIM, bad sha256sum [!!!!!]"
+else
+  sudo apt install /tmp/nvim-linux64.deb
+  echo "[===] Succes! [===]
+fi
+
+echo "+++ Installing nvim/development dependencies"
+sudo apt-get -y install silversearcher-ag python3-pip python3-nvim
 
 echo "+++ Installing dependencies for Phoenix/Elixir..."
 sudo apt-get -y install inotify-tools
