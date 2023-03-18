@@ -1,0 +1,20 @@
+{{/* Feature Flags */}}
+{{- $ephemeral := false -}}
+{{- $headless := false -}}
+{{- "" -}}
+
+
+{{/* --- Determine if we're probably running on a VM or container --- */}}
+{{- if eq .chezmoi.username "root" "ubuntu" "raspberry" -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+{{- if stdinIsATTY -}}
+{{-   $headless = promptBoolOnce . "headless" "headless" -}}
+{{-   $ephemeral = promptBoolOnce . "ephemeral" "ephemeral" -}}
+{{- end -}}
+
+[data]
+  ephemeral = {{ $ephemeral }}
+  headless = {{ $headless }}

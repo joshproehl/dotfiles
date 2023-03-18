@@ -1,3 +1,4 @@
+{{ if (and (not .ephemeral) (not .headless)) -}}
 #!/usr/bin/env bash
 
 {{ if eq .chezmoi.osRelease.id "arch" }}
@@ -12,4 +13,5 @@ fc-cache -fv  > /dev/null
 rm /tmp/Hack.zip
 echo "[=== Done installing NerdFonts ===]"
 
+{{ end }}
 {{ end }}
