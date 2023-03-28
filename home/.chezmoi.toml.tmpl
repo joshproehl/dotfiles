@@ -1,6 +1,7 @@
 {{/* Feature Flags */}}
 {{- $ephemeral := false -}}
 {{- $headless := false -}}
+{{- $install_secrets := false -}}
 {{- "" -}}
 
 
@@ -8,11 +9,13 @@
 {{- if eq .chezmoi.username "root" "ubuntu" "raspberry" -}}
 {{-   $ephemeral = true -}}
 {{-   $headless = true -}}
+{{-   $install_secrets = false -}}
 {{- end -}}
 
 {{- if stdinIsATTY -}}
-{{-   $headless = promptBoolOnce . "headless" "headless" -}}
-{{-   $ephemeral = promptBoolOnce . "ephemeral" "ephemeral" -}}
+{{-   $headless = promptBoolOnce . "headless" "Is a headless system?" -}}
+{{-   $ephemeral = promptBoolOnce . "ephemeral" "Is an Ephemeral system?" -}}
+{{-   $install_secrets = promptBoolOnce . "install_secrets" "Install Secrets?" -}}
 {{- end -}}
 
 encryption = "age"
@@ -23,3 +26,4 @@ encryption = "age"
 [data]
   ephemeral = {{ $ephemeral }}
   headless = {{ $headless }}
+  install_secrets = {{ $install_secrets }}
