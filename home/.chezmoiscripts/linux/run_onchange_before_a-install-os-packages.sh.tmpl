@@ -6,7 +6,7 @@
 ##########
 # Fedora #
 {{ if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf install -y util-linux-user zsh npm
+sudo dnf install -y util-linux-user zsh npm age
 
 # TODO: NVIM dependencies (from ArchLinux, need correct package names)
 echo "+++ Installing dependencies for NVIM/Development"
@@ -21,9 +21,9 @@ sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
 
 
 ##########
-# Debian #
+# Pop_OS #
 {{ else if eq .chezmoi.osRelease.id "pop" }}
-sudo apt install zsh npm
+sudo apt install zsh npm age
 
 echo "+++ Installing NVIM stable from neovim github"
 pushd /tmp > /dev/null
@@ -51,7 +51,7 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-gtk
 #############
 # Archlinux #
 {{ else if eq .chezmoi.osRelease.id "arch" }}
-sudo pacman -S --needed zsh npm
+sudo pacman -S --needed zsh npm age
 
 #####
 # NOTE: How should we assume Aura exists for installing AUR packages? Inform the user somehow?

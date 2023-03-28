@@ -15,6 +15,11 @@
 {{-   $ephemeral = promptBoolOnce . "ephemeral" "ephemeral" -}}
 {{- end -}}
 
+encryption = "age"
+[age]
+  identity = "~/.chezmoi.age.key.txt"
+  recipient = "age1s5zmy8kmn5nyrvvvv2ujlv3wjn6l7dnmyr0w0l87gnctavgd7g0sa5cpcr"
+
 [data]
   ephemeral = {{ $ephemeral }}
   headless = {{ $headless }}
