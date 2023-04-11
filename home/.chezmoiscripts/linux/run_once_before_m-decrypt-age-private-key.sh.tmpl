@@ -1,6 +1,8 @@
 #!/bin/sh
 
 if [ ! -f "${HOME}/.chezmoi.age.key.txt" ]; then
+    echo '|-------------------------|'
+    echo '| Decrypting Age key file |'
     age --decrypt --output "${HOME}/.chezmoi.age.key.txt" "{{ .chezmoi.sourceDir }}/key.txt.age"
     chmod 600 "${HOME}/.chezmoi.age.key.txt"
 fi
