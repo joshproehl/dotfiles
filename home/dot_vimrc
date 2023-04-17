@@ -70,6 +70,10 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+if has('nvim')
+  Plug 'github/copilot.vim'
+endif
+
 " Extra-VIM GUI stuff
 Plug 'equalsraf/neovim-gui-shim'
 
