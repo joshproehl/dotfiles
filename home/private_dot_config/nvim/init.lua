@@ -18,7 +18,7 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
--- nvim-tree configuration
+-- nvim-tree configuration --
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -37,3 +37,7 @@ require("nvim-tree").setup({
   },
 })
 -- END VimTree config --
+
+-- heirline configuration --
+require('heirline_config')
+-- END heirline configuration --

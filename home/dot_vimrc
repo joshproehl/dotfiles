@@ -39,14 +39,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'osyo-manga/unite-quickfix' " QuickFix source for unite
 Plug 'gregsexton/gitv' " Fugitive extension for Git
 
-" Airline and dependencies
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Fix for the issue where deleting a buffer doesn't remove it from tabline
-" Allegedly this is fixed, per
-" https://github.com/vim-airline/vim-airline/issues/399
-" but I'm still having the issue, so we'll try this.
-autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
+if has("nvim")
+  Plug 'rebelot/heirline.nvim'
+  " heirline config takes place in the nvim config file
+else
+  " Airline and dependencies
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  " Fix for the issue where deleting a buffer doesn't remove it from tabline
+  " Allegedly this is fixed, per
+  " https://github.com/vim-airline/vim-airline/issues/399
+  " but I'm still having the issue, so we'll try this.
+  autocmd BufDelete * call airline#extensions#tabline#buflist#invalidate()
+endif
 
 " Ctrl-P and it's dependencies
 Plug 'ctrlpvim/ctrlp.vim'
