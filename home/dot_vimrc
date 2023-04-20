@@ -263,6 +263,13 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 
+" =========================
+" set up other misc syntax matches
+au BufRead,BufNewFile *.njk set filetype=html
+au BufRead,BufNewFile *.ejs set filetype=html
+
+
+
 " =======================
 " Set up Syntastic plugin
 let g:syntastic_always_populate_loc_list = 1
