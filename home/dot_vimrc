@@ -24,7 +24,7 @@ Plug 'editorconfig/editorconfig-vim'
 if has("nvim")
   " Note that this require patched font https://www.nerdfonts.com configured
   " in your terminal emulator
-  Plug 'nvim-tree/nvim-web-devicons' " Optional, for file icons
+  Plug 'nvim-tree/nvim-web-devicons' " Optional, for file icons, also used for heirline
   Plug 'nvim-tree/nvim-tree.lua'
 else
   " NerdTree and dependencies
@@ -41,7 +41,12 @@ Plug 'gregsexton/gitv' " Fugitive extension for Git
 
 if has("nvim")
   Plug 'rebelot/heirline.nvim'
-  " heirline config takes place in the nvim config file
+  Plug 'SmiteshP/nvim-navic'
+  Plug 'lewis6991/gitsigns.nvim'
+  " heirline/gitsigns config takes place in the nvim config file
+
+  Plug 'nvim-lua/lsp-status.nvim'
+  Plug 'neovim/nvim-lspconfig'
 else
   " Airline and dependencies
   Plug 'vim-airline/vim-airline'
