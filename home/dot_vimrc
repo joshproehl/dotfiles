@@ -18,7 +18,6 @@ Plug 'scrooloose/nerdcommenter'
 " Misc UI stuff
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
-Plug 'airblade/vim-gitgutter'
 
 " Support editorconfig.org .editorconfig files
 Plug 'editorconfig/editorconfig-vim'
@@ -50,6 +49,8 @@ if has("nvim")
   Plug 'nvim-lua/lsp-status.nvim'
   Plug 'neovim/nvim-lspconfig'
 else
+  Plug 'airblade/vim-gitgutter'
+  "
   " Airline and dependencies
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
