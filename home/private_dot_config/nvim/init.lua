@@ -9,6 +9,10 @@ if filereadable(expand("~/.init.vim.local"))
 endif
 ]])
 
+-- NVim config options --
+-- disable unused external providers, just to clean up :checkhealth output
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
 
 -- VimTree config --
 -- disable netrw at the very start of your init.lua (strongly advised)
