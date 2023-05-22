@@ -7,10 +7,20 @@ echo "[---] Not installing NerdFonts manually, AUR package handles them. [---]"
 
 echo "[+++] Installing required NerdFonts [+++]"
 # TODO: Don't suppress output if chezmoi's --verbose mode is active?
-wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip" -O /tmp/Hack.zip --quiet
+
+wget "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip" -O /tmp/Hack.zip --quiet
 unzip -d ~/.local/share/fonts -oq /tmp/Hack.zip 
+wget "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraMono.zip" -O /tmp/FiraMono.zip --quiet
+unzip -d ~/.local/share/fonts -oq /tmp/FiraMono.zip 
+wget "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip" -O /tmp/FiraCode.zip --quiet
+unzip -d ~/.local/share/fonts -oq /tmp/FiraCode.zip 
+
 fc-cache -fv  > /dev/null
+
 rm /tmp/Hack.zip
+rm /tmp/FiraMono.zip
+rm /tmp/FiraCode.zip
+
 echo "[=== Done installing NerdFonts ===]"
 
 {{ end }}
