@@ -99,6 +99,12 @@ Plug 'andyl/vim-textobj-elixir'
   " - Add :MixFormat command:
 Plug 'mhinz/vim-mix-format'
 
+" Rust
+Plug 'simrat39/rust-tools.nvim'
+  " - Debugging
+Plug 'nvim-lua/plenary.nvim'
+Plug 'mfussenegger/nvim-dap'
+
 " Other
 Plug 'janko/vim-test'
 "Plug 'neomake/neomake'    " Found in Elixir plugins list
