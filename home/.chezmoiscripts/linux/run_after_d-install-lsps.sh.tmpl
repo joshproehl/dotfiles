@@ -1,9 +1,12 @@
 {{ if (and (not .ephemeral) (not .headless)) -}}
 #!/usr/bin/env bash
+echo "[+++] Installing Language Servers [+++]"
 
 mkdir /home/joshproehl/.lsp
 curl -fLO https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
 unzip -o elixir-ls.zip -d /home/joshproehl/.lsp/elixir-ls
 # Unix only
 chmod +x /home/joshproehl/.lsp/elixir-ls/language_server.sh
+
+echo "[===] Language Servers Installed [===]"
 {{ end }}

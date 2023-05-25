@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
+echo "[+++] Installing Antigen [+++]"
 
 curl -L git.io/antigen > ~/.config/zsh/antigen.zsh
+
+echo "[===] Antigen Installed [===]"
 {{ end -}}
