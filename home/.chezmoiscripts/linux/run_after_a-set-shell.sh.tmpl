@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 
-# Ensure we're defaulting to ZSH as our shell
-chsh -s $(which zsh)
+if [ $(getent passwd `whoami` | awk -F: '{print $NF}') == $(which zsh) ]; then
+  echo "[+=+] ZSH is already the default shell [+=+]"
+else
+  echo "[+++] Setting default shell to ZSH [+++]"
+  # Ensure we're defaulting to ZSH as our shell
+  chsh -s $(which zsh)
+  echo "[===] Done setting default shell [===]"
+fi
