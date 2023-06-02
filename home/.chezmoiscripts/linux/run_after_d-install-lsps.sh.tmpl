@@ -3,10 +3,11 @@
 echo "[+++] Installing Language Servers [+++]"
 
 mkdir /home/joshproehl/.lsp
-curl -fLO https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip
-unzip -o elixir-ls.zip -d /home/joshproehl/.lsp/elixir-ls
+curl -fL https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip -o /tmp/elixir-ls.zip
+unzip -o /tmp/elixir-ls.zip -d /home/joshproehl/.lsp/elixir-ls
 # Unix only
 chmod +x /home/joshproehl/.lsp/elixir-ls/language_server.sh
+rm /tmp/elixir-ls.zip
 
 mkdir -p ~/.local/bin
 curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
