@@ -52,8 +52,8 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-gtk
 
 #############
 # Archlinux #
-{{ else if eq .chezmoi.osRelease.id "arch" }}
-sudo pacman -S --needed zsh npm age
+{{ else if eq .chezmoi.osRelease.idLike "arch" }}
+sudo pacman -S --needed zsh npm age tig neovim
 
 #####
 # NOTE: How should we assume Aura exists for installing AUR packages? Inform the user somehow?
@@ -68,6 +68,8 @@ echo " ++++ Installing dependencies for asdf-erlang..."
 sudo pacman -S --needed base-devel
 sudo pacman -S --needed ncurses glu mesa wxwidgets-gtk3 webkit2gtk libpng libssh
 
+{{ else }}
+echo " !!!!! Unknown OS, no packages installed"
 {{ end }}
 
 echo "[===] Done installing OS Packages [===]"
