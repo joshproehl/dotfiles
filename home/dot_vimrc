@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'neanias/everforest-nvim', { 'branch': 'main' }
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " Movement and editing
 if !has("nvim")
@@ -147,7 +149,8 @@ inoremap <Down> <NOP>
 "colorscheme solarized
 "colorscheme base16-default
 " TODO: Is this supposed to be base16-monokai ?
-colorscheme monokai
+"colorscheme monokai
+colorscheme catppuccin-latte
 "if has('gui_running')
 "    set background=light
 "else
