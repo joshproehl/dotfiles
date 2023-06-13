@@ -472,6 +472,13 @@ local LSPActive = {
     hl = { fg = utils.get_highlight("Directory").fg },
   }
 
+  local RelativeLine = {
+    provider = function(self)
+      return "%r"
+    end,
+    hl = { fg = utils.get_highlight("NonText").fg },
+  }
+
 
 
   ---------------------------
@@ -485,7 +492,7 @@ local LSPActive = {
       Git, Space,
       FileNameBlock, Space,
       AlignRight,
-      -- LSPMesages, Space,
+      LSPMesages, Space,
       LSPActive, Space,
       FileEncoding, Space,
       Ruler,
@@ -499,7 +506,7 @@ local LSPActive = {
       BufferLine,
     },
     statuscolumn = {
-      AlignRight, LineNumber, Space
+      LineNumber, Space, AlignRight, RelativeLine, Space,
     },
     opts = {
       colors = setup_colors,
