@@ -52,7 +52,7 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-gtk
 
 #############
 # Archlinux #
-{{ else if eq .chezmoi.osRelease.idLike "arch" }}
+{{ else if or (eq .chezmoi.osRelease.id "arch") (eq (get .chezmoi.osRelease.idLike) "arch") }}
 sudo pacman -S --needed zsh npm age tig neovim the_silver_searcher
 
 #####
