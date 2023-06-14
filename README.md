@@ -5,8 +5,10 @@ Managed by [Chezmoi](https://www.chezmoi.io).
 Currently supports Arch-based, PopOS, Debian, and Fedora systems.
 
 ## Installation
-- Install Chezmoi on new device (system package manager on Arch, or [https://www.chezmoi.io/install/](https://www.chezmoi.io/install/)) 
-- chezmoi init https://gitlab.daedalusdreams.com/joshproehl/dotfiles.git
+Note that we have to do a little dance to install on a new system because chezmoi is what installs our SSH keys. Thus we have to install from HTTPS, and then let Chezmoi run in order to bring in everything.
+
+- Install Chezmoi on new device (system package manager on Arch, or [https://www.chezmoi.io/install/](https://www.chezmoi.io/install/) elsewhere) 
+- `chezmoi init https://gitlab.daedalusdreams.com/joshproehl/dotfiles.git`
 
 
 ## TODO: 
