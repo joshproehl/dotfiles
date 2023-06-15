@@ -1,0 +1,12 @@
+{{ if (not .ephemeral) -}}
+#!/usr/bin/env bash
+echo "[+++] Updating git origins [+++]"
+
+chezmoi git -- remote rm origin
+chezmoi git -- remote add origin ssh://git@gitlab.daedalusdreams.com:8922/joshproehl/dotfiles.git
+chezmoi git -- remote add github git@github.com:joshproehl/dotfiles.git
+chezmoi git -- fetch --all
+chezmoi git -- branch --set-upstream-to=origin/master
+
+echo "[===] Git remotes updated and fetched, you may now push changes to origin and github [===]"
+{{ end }}
