@@ -1,0 +1,12 @@
+{{ if not .ephemeral -}}
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env zsh
+# Note that we have to hardcode ZSH here as the
+# user shell so that shimming works correctly
+echo "[+++] Installing ASDF versions [+++]"
+
+cd ~ && asdf install
+
+echo "[===] Done installing ASDF versions [===]"
+{{ end -}}
+{{ end -}}

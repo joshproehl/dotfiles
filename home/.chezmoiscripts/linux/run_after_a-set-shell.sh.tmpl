@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+## NOTE:
+##  If we change our default shell we must also change the shell in the
+##    run_after_e-asdf-install.sh-tmpl
+##  file, since that hard-codes ZSH as the user shell
+
 if [ $(getent passwd `whoami` | awk -F: '{print $NF}') == $(which zsh) ]; then
   echo "[+=+] ZSH is already the default shell [+=+]"
 else
