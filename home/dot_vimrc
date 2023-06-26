@@ -6,8 +6,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'neanias/everforest-nvim', { 'branch': 'main' }
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+if has("nvim")
+  Plug 'neanias/everforest-nvim', { 'branch': 'main' }
+  Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+  Plug 'navarasu/onedark.nvim'
+end
 
 " Movement and editing
 if !has("nvim")
