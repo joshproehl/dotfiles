@@ -153,7 +153,9 @@ inoremap <Down> <NOP>
 "colorscheme base16-default
 " TODO: Is this supposed to be base16-monokai ?
 "colorscheme monokai
-colorscheme catppuccin-latte
+"colorscheme catppuccin-latte
+colorscheme onedark
+set background=dark
 "if has('gui_running')
 "    set background=light
 "else
