@@ -1,14 +1,27 @@
 {{ if (and (not .ephemeral) (not .headless)) -}}
 #!/usr/bin/env bash
 echo "[+++] Installing Language Servers [+++]"
-
 mkdir /home/joshproehl/.lsp
-curl -fL https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip -o /tmp/elixir-ls.zip
-unzip -o /tmp/elixir-ls.zip -d /home/joshproehl/.lsp/elixir-ls
-# Unix only
-chmod +x /home/joshproehl/.lsp/elixir-ls/language_server.sh
-rm /tmp/elixir-ls.zip
 
+##### Lexical
+{{ if eq .chezmoi.osRelease.id "fedora" }}
+sudo dnf install -y git-lfs
+{{ else if or (eq .chezmoi.osRelease.id "arch") (eq (get .chezmoi.osRelease "idLike") "arch") }}
+sudo pacman -S git-lfs
+{{ end }}
+git clone git@github.com:lexical-lsp/lexical.git ~/.lsp/lexical
+cd ~/.lsp/lexical
+mix deps.get
+mix package
+
+##### Elixir-LS.
+#curl -fL https://github.com/elixir-lsp/elixir-ls/releases/latest/download/elixir-ls.zip -o /tmp/elixir-ls.zip
+#unzip -o /tmp/elixir-ls.zip -d /home/joshproehl/.lsp/elixir-ls
+## Unix only
+#chmod +x /home/joshproehl/.lsp/elixir-ls/language_server.sh
+#rm /tmp/elixir-ls.zip
+
+##### Rust Analyzer
 mkdir -p ~/.local/bin
 curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
 chmod +x ~/.local/bin/rust-analyzer

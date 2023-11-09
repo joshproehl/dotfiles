@@ -64,22 +64,48 @@ require("nvim-tree").setup({
 -- END VimTree config --
 
 -- LSP configuration
-local lsp_status = require('lsp-status')
-lsp_status.register_progress()
+---- Elixir-LS
+--local lsp_status = require('lsp-status')
+--lsp_status.register_progress()
 
-local navic = require('nvim-navic')
+--local navic = require('nvim-navic')
 
-local lspconfig = require('lspconfig')
-lspconfig.elixirls.setup{
-    -- Unix
-    cmd = { "/home/joshproehl/.lsp/elixir-ls/language_server.sh" };
-    -- Windows
-    --cmd = { "/path/to/elixir-ls/language_server.bat" };
-    on_attach = function(client, bufnr)
-      require('lsp-status').on_attach(client)
-      navic.attach(client,bufnr)
-    end
+--local lspconfig = require('lspconfig')
+--lspconfig.elixirls.setup{
+    ---- Unix
+    --cmd = { "/home/joshproehl/.lsp/elixir-ls/language_server.sh" };
+    ---- Windows
+    ----cmd = { "/path/to/elixir-ls/language_server.bat" };
+    --on_attach = function(client, bufnr)
+      --require('lsp-status').on_attach(client)
+      --navic.attach(client,bufnr)
+    --end
+--}
+---- END Elixir-LS
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig.configs")
+
+local lexical_config = {
+  filetypes = { "elixir", "eelixir", },
+  cmd = { "/home/joshproehl/.lsp/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+  settings = {},
 }
+
+if not configs.lexical then
+  configs.lexical = {
+    default_config = {
+      filetypes = lexical_config.filetypes,
+      cmd = lexical_config.cmd,
+      root_dir = function(fname)
+        return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
+      end,
+      -- optional settings
+      settings = lexical_config.settings,
+    },
+  }
+end
+
+lspconfig.lexical.setup({})
 -- END LSP configuration
 
 require('gitsigns').setup{
