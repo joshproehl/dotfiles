@@ -1,0 +1,49 @@
+# Files
+{{/* Note that this isn't used yet, but keeping it here to remind myself */}}
+{{- $homeDir := .chezmoi.homeDir }}
+data.location=/home/joshproehl/.task
+
+{{ if eq .chezmoi.osRelease.id "fedora" }}
+include /usr/share/task/holidays.en-US.rc
+include /usr/share/task/solarized-dark-256.theme
+{{ else if eq .chezmoi.osRelease.id "pop" }}
+{{/* TODO:  If we continue using Pop! we'll have to figure out what the right paths are */}}
+{{ else if or (eq .chezmoi.osRelease.id "arch") (eq (get .chezmoi.osRelease "idLike") "arch") }}
+include /usr/share/doc/task/rc/holidays.en-US.rc
+include /usr/share/doc/task/rc/solarized-dark-256.theme
+{{ else }}
+echo "[!!!] Unknown Distro, so we don't know where the TaskWarrior RC files are. Holidays and Theme not set. [!!!]"
+{{ end }}
+
+{{/* Saving this from default generated config
+# Color theme (uncomment one to use)
+#include {{$taskRcPath}}light-16.theme
+#include {{$taskRcPath}}light-256.theme
+#include {{$taskRcPath}}dark-16.theme
+#include {{$taskRcPath}}dark-256.theme
+#include {{$taskRcPath}}dark-red-256.theme
+#include {{$taskRcPath}}dark-green-256.theme
+#include {{$taskRcPath}}dark-blue-256.theme
+#include {{$taskRcPath}}dark-violets-256.theme
+#include {{$taskRcPath}}dark-yellow-green.theme
+#include {{$taskRcPath}}dark-gray-256.theme
+#include {{$taskRcPath}}dark-gray-blue-256.theme
+#include {{$taskRcPath}}solarized-dark-256.theme
+#include {{$taskRcPath}}solarized-light-256.theme
+#include {{$taskRcPath}}no-color.theme
+*/}}
+
+taskd.certificate=\/home\/joshproehl\/.task\/josh_proehl.cert.pem
+taskd.key=\/home\/joshproehl\/.task\/josh_proehl.key.pem
+taskd.ca=\/home\/joshproehl\/.task\/ca.cert.pem
+taskd.server=taskwarrior.asgard.daedalusdreams.com:53589
+taskd.credentials={{ (bitwardenFields "item" "28a74fc2-cf1e-4a43-a93f-afe1015a6946").taskwarrior_credentials.value }}
+
+# Contexts
+context.work.read=+work or +freelance
+context.bev.read=+bev project:Bev
+context.clean.read=project.not:Get.Books project.not:Get.Media project.not:Get.Music project.not:placesToGo -bevdo
+context.noget.read=project.not:Get.Music project.not:Get.Media project.not:Get.Books
+
+# Settings
+news.version=2.6.0
