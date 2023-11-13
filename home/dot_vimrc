@@ -74,6 +74,12 @@ Plug 'mhinz/vim-grepper'
 
 " Autocomplete / Syntax
 Plug 'scrooloose/syntastic'
+if has('nvim')
+  Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
+  Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
+  Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
+  Plug 'L3MON4D3/LuaSnip' " Snippets plugin
+endif
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
