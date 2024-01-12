@@ -17,6 +17,9 @@ sudo dnf install -y neovim python3-pip
 echo " ++++ Installing dependencies for Phoenix/Elixir..."
 sudo dnf install -y inotify-tools
 
+echo " +++ Installing dependencies for asdf-ruby..."
+sudo dnf install -y libyaml-devel readline-devel
+
 echo " ++++ Installing dependencies for asdf-erlang..."
 sudo dnf groupinstall -y 'Development Tools' 'C Development Tools and Libraries'
 sudo dnf install -y autoconf ncurses-devel wxGTK3-devel wxBase3 openssl-devel
