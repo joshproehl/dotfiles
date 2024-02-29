@@ -12,7 +12,7 @@ sudo dnf install -y util-linux-user zsh npm age task
 
 # TODO: NVIM dependencies (from ArchLinux, need correct package names)
 echo " ++++ Installing dependencies for NVIM/Development"
-sudo dnf install -y neovim python3-pip
+sudo dnf install -y neovim python3-pip ripgrep
 
 echo " ++++ Installing dependencies for Phoenix/Elixir..."
 sudo dnf install -y inotify-tools
@@ -44,7 +44,7 @@ fi
 popd > /dev/null
 
 echo " ++++ Installing nvim/development dependencies"
-sudo apt-get -y install silversearcher-ag python3-pip
+sudo apt-get -y install silversearcher-ag python3-pip ripgrep
 
 echo " ++++ Installing dependencies for Phoenix/Elixir..."
 sudo apt-get -y install inotify-tools
@@ -56,7 +56,7 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-gtk
 #############
 # Archlinux #
 {{ else if or (eq .chezmoi.osRelease.id "arch") (eq (get .chezmoi.osRelease "idLike") "arch") }}
-sudo pacman -S --needed zsh npm python-pip age tig neovim the_silver_searcher task
+sudo pacman -S --needed zsh npm python-pip age tig neovim the_silver_searcher ripgrep task
 
 #####
 # NOTE: How should we assume Aura exists for installing AUR packages? Inform the user somehow?
