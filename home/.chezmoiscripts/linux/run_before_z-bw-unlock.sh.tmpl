@@ -3,6 +3,7 @@
 if [[ "$(bw status)" == *unauthenticated* ]]; then
   echo '|------------------------------------------------------------|'
   echo '|    Log in to the Bitwarden web vault to get the API keys   |'
+  echo '|       Account Settings -> Security -> Keys -> API Keys     |'
   echo '| (Be careful copying it, there seem to be spaces around it) |'
   bw login josh@joshproehl.com --apikey || true
 fi
