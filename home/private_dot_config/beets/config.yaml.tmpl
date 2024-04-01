@@ -1,14 +1,14 @@
-directory: /mnt/music/Library
-library: /mnt/music/Library.blb
+directory: /mnt/munin/music/Library
+library: /mnt/munin/music/Library.blb
 
 import:
   move: no
   copy: yes
   write: yes
   resume: ask
-  log: /mnt/music/beet_import.log
+  log: /mnt/munin/music/beet_import.log
 
-plugins: convert web the fromfilename mbsync smartplaylist plexupdate chroma duplicates missing edit export info inline #discogs 
+plugins: convert web the fromfilename mbsync smartplaylist plexupdate chroma duplicates missing edit export info inline discogs 
 
 paths:
   default: $albumartist/$album%aunique{}/%if{$multidisc,Disc $disc/}$track $title
@@ -21,8 +21,8 @@ web:
   port: 80
 
 smartplaylist:
-  relative_to: /mnt/music/Library
-  playlist_dir: /mnt/music/playlists
+  relative_to: /mnt/munin/music/Library
+  playlist_dir: /mnt/munin/music/playlists
   playlists:
     - name: Orpheus-Album-of-the-Month-candidates.m3u
       query: 'ops_aotm_candidate::.'
