@@ -1,7 +1,7 @@
 nodejs 18.14.2
 ruby system
-golang 1.17.1
-elixir 1.15.5-otp-26
-erlang 26.0.2
+golang 1.22.2
+elixir 1.16.2-otp-26
+erlang 26.2.5
 python system
-rust 1.69.0
+rust stable
