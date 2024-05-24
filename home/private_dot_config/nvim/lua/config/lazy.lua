@@ -44,4 +44,8 @@ require("lazy").setup({
       },
     },
   },
+}, {
+  import = {
+    "custom.copypastefix",
+  },
 })
