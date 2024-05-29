@@ -56,7 +56,7 @@ sudo apt-get -y install build-essential autoconf libncurses5-dev libwxgtk3.0-gtk
 #############
 # Archlinux #
 {{ else if or (eq .chezmoi.osRelease.id "arch") (eq (get .chezmoi.osRelease "idLike") "arch") }}
-sudo pacman -S --needed zsh npm python-pip age tig neovim the_silver_searcher ripgrep task
+sudo pacman -S --needed zsh npm python-pip age tig neovim python-pynvim the_silver_searcher ripgrep task
 
 #####
 # NOTE: How should we assume Aura exists for installing AUR packages? Inform the user somehow?
